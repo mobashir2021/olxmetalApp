@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, View,  SafeAreaView } from 'react-native';
 import { TextInput, Button, Provider, Surface, ThemeProvider, } from "react-native-paper";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Constant from '../data/constants';
 
 
 import {
@@ -30,11 +31,11 @@ export default function Accountlogin(props) {
   
 
   const login = () =>{
-      console.log('login');
+    navigation.navigate('Choosetype');
   }
 
   const signup = () =>{
-    navigation.navigate('Signup', {valuedata: "1"})
+    navigation.navigate('ChoosetypeSignup');
 }
   
   return (

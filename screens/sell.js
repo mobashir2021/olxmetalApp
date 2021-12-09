@@ -9,6 +9,7 @@ import {Picker, picker} from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Apploader from '../components/Apploader';
+import * as Constant from '../data/constants';
 
 
 
@@ -229,7 +230,7 @@ export default function Sell(props) {
       });
     
     setLoaderPending(true);
-    fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/TestDataPost',{
+    fetch(Constant.BASEURL + 'api/Appapi/TestDataPost',{
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data',

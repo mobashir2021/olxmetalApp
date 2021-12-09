@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,TouchableOpacity, Image } from 'react-native';
 import { TextInput, Button, Provider, Surface, ThemeProvider, } from "react-native-paper";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import COLORS from '../data/colors';
+import * as Constant from '../data/constants';
 
 
 export default function Buy(props) {
@@ -43,6 +44,9 @@ export default function Buy(props) {
       if(value !== null){
         formdata.append('Buyerid', value);
       }else{
+
+        // navigation.navigate('Signup');
+        // return;
         formdata.append('Buyerid', '0');
       }
       //formdata.append('Finalprice',Productprice);
@@ -53,7 +57,7 @@ export default function Buy(props) {
       
       
       setLoaderPending(true);
-      fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/BuyerPost',{
+      fetch(Constant.BASEURL + 'api/Appapi/BuyerPost',{
         method: 'POST',
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -64,9 +68,17 @@ export default function Buy(props) {
           if(response.status == '200'){
             //alert('Your Ads has been published for Sale');
             response.json().then((dataid) => {
-              
-              
+              const myArr = dataid.split("~");
+                    var statusvalue = myArr[1];
+                    var walletamount = myArr[0];
               if(value !== null) {
+                if(statusvalue == "Bought"){
+                  alert("Your item has been ordered!");
+                  navigation.navigate("chats");
+                }else if(statusvalue == "Insufficient wallet"){
+                  alert("Kindly Recharge your wallet");
+                  navigation.navigate('Recharge');
+                }
                 alert(dataid);
                 
               }else{

@@ -107,6 +107,7 @@ const BottomtabNavigator = () => {
 
             }
             <Tab.Screen name="HomeStack" component={HomeStack} options={{
+                unmountOnBlur: true,
                 tabBarIcon:({focused}) =>(
                     <View style={{
                         position:'absolute',
@@ -150,6 +151,7 @@ const BottomtabNavigator = () => {
 
             </Tab.Screen>
             <Tab.Screen name="SellStack" component={SellStack} options={{
+                unmountOnBlur: true,
                 tabBarIcon:({focused}) =>(
                     // <View style={{
                     //     position:'absolute',
@@ -193,6 +195,7 @@ const BottomtabNavigator = () => {
 
             </Tab.Screen>
             <Tab.Screen name="AccountStack" component={valuelogin ?  AccountStack : AccountLoginStack} options={{
+                unmountOnBlur: true,
                 tabBarIcon:({focused}) =>(
                     <View style={{
                         position:'absolute',

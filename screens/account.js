@@ -15,6 +15,8 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Constant from '../data/constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -26,6 +28,8 @@ export default function Account(props) {
   const [email, setemail] =  useState("");
   const [city, setcity] =  useState("");
   const [zipcode, setzipcode] =  useState("");
+  const [walletamount , setwalletamount] = useState("");
+  const [usertype, setusertype] = useState("");
 
   const removeitem = async (key) =>{
     try {
@@ -37,6 +41,11 @@ export default function Account(props) {
     }
 }
 
+const navigateRecharge = () =>{
+  
+  navigation.navigate("Recharge");
+}
+
   const logout = async () => {
     const val1 = await removeitem("userid");
     const val2 = await removeitem("username");
@@ -44,6 +53,8 @@ export default function Account(props) {
     const val4 = await removeitem("city");
     const val5 = await removeitem("email");
     const val6 = await removeitem("zipcode");
+    const val7 = await removeitem("walletamount");
+    const val8 = await removeitem("usertype");
 
     navigation.navigate("Accountlogin");
   }
@@ -60,10 +71,10 @@ export default function Account(props) {
     const city = await AsyncStorage.getItem('city').then((data) => setcity(data));
     
     const zipcode = await AsyncStorage.getItem('zipcode').then((data) => setzipcode(data));
+
+    const walletamount = await AsyncStorage.getItem('walletamount').then((data) => setwalletamount(data));
     
-    
-    
-    
+    const usertype = await AsyncStorage.getItem('usertype').then((data) => setusertype(data)); 
   }
 
   useEffect(() => {
@@ -132,7 +143,7 @@ export default function Account(props) {
             borderRightColor: '#dddddd',
             borderRightWidth: 1
           }]}>
-            <Title>₹140.50</Title>
+            <Title>₹{walletamount}</Title>
             <Caption>Wallet</Caption>
           </View>
           <View style={styles.infoBox}>
@@ -154,11 +165,11 @@ export default function Account(props) {
             <Text style={styles.menuItemText}>Payment</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple 
+        <TouchableRipple  onPress={navigateRecharge}
         >
           <View style={styles.menuItem}>
             <Icon name="share-outline" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Tell Your Friends</Text>
+            <Text style={styles.menuItemText}>Rechare Your Wallet</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>

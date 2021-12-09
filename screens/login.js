@@ -3,6 +3,7 @@ import { Text, ScrollView, StyleSheet, ImageBackground, Dimensions, View, TextIn
 import { Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Apploader from '../components/Apploader';
+import * as Constant from '../data/constants';
 
 function login(props) {
   const { navigation, route } = props;
@@ -70,7 +71,7 @@ function login(props) {
           }
           
           setLoaderPending(true);
-          fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/Login',{
+          fetch(Constant.BASEURL + 'api/Appapi/Login',{
             method: 'POST',
             headers: {
               'Content-Type': 'multipart/form-data',

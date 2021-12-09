@@ -6,6 +6,7 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Apploader from '../components/Apploader';
+import * as Constant from '../data/constants';
 
 
 const {width, height} = Dimensions.get('screen');
@@ -38,7 +39,7 @@ export default function Myads(props) {
 
       }
       setLoaderPending(true);
-      fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/GetAds?userid=1', {
+      fetch(Constant.BASEURL + 'api/Appapi/GetAds?userid=1', {
          method: 'GET'
       })
       .then((response) => response.json())

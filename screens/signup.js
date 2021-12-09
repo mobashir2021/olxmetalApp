@@ -4,6 +4,8 @@ import { Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CommonActions } from '@react-navigation/native';
 import Apploader from '../components/Apploader';
+import * as Constant from '../data/constants';
+import { RadioButton } from 'react-native-paper';
 
 function signup(props) {
   const { navigation, route } = props;
@@ -17,6 +19,7 @@ function signup(props) {
     const [city, setCity] = useState('');
     const [pincode, setPincode] = useState('');
     const [loaderPending, setLoaderPending] = useState(false);
+    const [checked, setChecked] = React.useState('Vendor');
 
     const removeitem = async (key) =>{
       try {
@@ -94,7 +97,7 @@ function signup(props) {
         }
         
         setLoaderPending(true);
-        fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/Signup',{
+        fetch(Constant.BASEURL + 'api/Appapi/Signup',{
           method: 'POST',
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -212,6 +215,22 @@ function signup(props) {
 
                     </View>
 
+                    {/* <RadioButton.Item style={styles.radioinput}
+                    label="Vendor"
+                        value="Vendor"
+                        color="black"
+                        status={ checked === 'Vendor' ? 'checked' : 'unchecked' }
+                        onPress={() => setChecked('Vendor')}
+                      />
+                      <RadioButton.Item  style={styles.radioinput}
+                      label="Customer"
+                        value="Customer"
+                        color="black"
+
+                        status={ checked === 'Customer' ? 'checked' : 'unchecked' }
+                        onPress={() => setChecked('Customer')}
+                      /> */}
+
                     <TouchableOpacity style={styles.loginBtn} onPress={signupdata}>
                     <Text style={styles.loginText}>Sign Up</Text>
                     </TouchableOpacity>
@@ -259,21 +278,25 @@ const styles = StyleSheet.create({
         marginTop:4
       },
     inputText:{
-        height:50,
+        height:40,
         color:"white"
       },
       loginBtn:{
         width:"100%",
         backgroundColor:"#fb5b5a",
         borderRadius:25,
-        height:50,
+        height:40,
         alignItems:"center",
         justifyContent:"center",
-        marginTop:40,
+        marginTop:10,
         marginBottom:10
       },
       loginText:{
           color:"white"
+      }
+      ,
+      radioinput:{
+          backgroundColor:"white"
       }
 });
 

@@ -8,6 +8,7 @@ import COLORS from '../data/colors';
 import { MaterialIcons } from '@expo/vector-icons';
 import Swiper from 'react-native-swiper';
 import plants from '../data/plants';
+import * as Constant from '../data/constants';
 
 
 import Apploader from '../components/Apploader';
@@ -29,7 +30,7 @@ export default function Home({navigation}) {
 
     // return unsubscribe;
     setLoaderPending(true);
-    fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/GetItems', {
+    fetch(Constant.BASEURL + 'api/Appapi/GetItems', {
          method: 'GET'
       })
       .then((response) => response.json())
@@ -60,7 +61,7 @@ export default function Home({navigation}) {
 
     let cat = categories[index];
     setLoaderPending(true);
-    fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/GetItems?category=' + cat, {
+    fetch(Constant.BASEURL +'api/Appapi/GetItems?category=' + cat, {
          method: 'GET'
       })
       .then((response) => response.json())
@@ -154,7 +155,7 @@ export default function Home({navigation}) {
     }}>
       <View style={styles.header}>
         <View>
-          <Text style={{fontSize:22, marginTop:30,  color:COLORS.red}}>Scrap Broker App</Text>
+          <Text style={{fontSize:22, marginTop:30,  color:COLORS.red, fontWeight:"bold"}}>Old Scrap Zone</Text>
         </View>
         <View style={{marginTop:10, flexDirection:'row'}}>
           <View style={styles.searchContainer}>

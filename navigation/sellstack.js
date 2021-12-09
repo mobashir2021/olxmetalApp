@@ -4,6 +4,8 @@ import Sell from "../screens/sell";
 import signup from '../screens/signup';
 import login from '../screens/login';
 import { CommonActions } from '@react-navigation/native';
+import signupVendor from '../screens/signupVendor';
+import loginVendor from '../screens/loginVendor';
 
 
 const Stack = createStackNavigator();

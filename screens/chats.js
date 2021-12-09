@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, SafeAreaView, TouchableOpacity, FlatLis
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Apploader from '../components/Apploader';
+import * as Constant from '../data/constants';
 
 export default function Chat(props) {
 
@@ -30,7 +31,7 @@ export default function Chat(props) {
 
       }
       setLoaderPending(true);
-      fetch('http://f740-103-252-25-34.ngrok.io/api/Appapi/GetOrders?userid=1' , {
+      fetch(Constant.BASEURL + 'api/Appapi/GetOrders?userid=userid' , {
          method: 'GET'
       })
       .then((response) => response.json())
